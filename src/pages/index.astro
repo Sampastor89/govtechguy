@@ -2,7 +2,15 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
+
+const cardAccents = ['--accent-blue', '--accent-gold', '--accent-teal'];
 ---
 
 <!doctype html>
@@ -13,37 +21,203 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+
+			<!-- Hero -->
+			<section class="hero">
+				<div class="badge">HI, I'M SAM</div>
+
+				<h1 class="headline">
+					Writing about <span class="highlight">GovTech.</span>
+				</h1>
+
+				<div class="bio">
+					<p>
+						Four years at Tyler Technologies working with open data and enterprise data customers gave me a front-row seat to how government software actually works — and who the players are across every category.
+					</p>
+					<p>
+						This blog is my take on what's happening in GovTech: startups and incumbents alike, as they adapt to and try to leverage emerging technologies in the service of state, local, and federal customers.
+					</p>
+				</div>
+			</section>
+
+			<!-- Latest posts -->
+			<section class="posts-section">
+				<div class="section-label">Latest Posts</div>
+
+				<div class="post-grid">
+					{posts.map((post, i) => (
+						<a href={`/blog/${post.id}/`} class="post-card" style={`--card-accent: var(${cardAccents[i % 3]})`}>
+							<div class="post-date">
+								<FormattedDate date={post.data.pubDate} />
+							</div>
+							<h2 class="post-title">{post.data.title}</h2>
+							<p class="post-excerpt">{post.data.description}</p>
+							<span class="read-more">Read &rarr;</span>
+						</a>
+					))}
+				</div>
+
+				<a href="/blog" class="all-posts-link">All posts &rarr;</a>
+			</section>
+
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	main {
+		max-width: 860px;
+		padding: 4em 1.5em 5em;
+	}
+
+	/* Hero */
+	.hero {
+		margin-bottom: 5em;
+	}
+
+	.badge {
+		display: inline-block;
+		background: var(--accent-gold);
+		color: #0f1219;
+		font-family: monospace;
+		font-size: 0.75em;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		padding: 5px 10px;
+		border: 2px solid #0f1219;
+		box-shadow: 3px 3px 0 #0f1219;
+		margin-bottom: 1.5em;
+	}
+
+	.headline {
+		font-size: clamp(2.8rem, 6vw, 4.5rem);
+		font-weight: 800;
+		line-height: 1.1;
+		color: var(--text);
+		margin-bottom: 1.5em;
+	}
+
+	.highlight {
+		display: inline-block;
+		background: var(--accent-blue);
+		color: #0f1219;
+		padding: 2px 10px 4px;
+		border: 2.5px solid #0f1219;
+		box-shadow: 5px 5px 0 #0f1219;
+		line-height: 1.15;
+		margin-left: 0.1em;
+	}
+
+	.bio {
+		max-width: 640px;
+	}
+
+	.bio p {
+		font-size: 1.1rem;
+		line-height: 1.75;
+		color: var(--text);
+		margin-bottom: 1.25em;
+	}
+
+	/* Posts section */
+	.posts-section {
+		margin-top: 1em;
+	}
+
+	.section-label {
+		display: inline-block;
+		background: var(--accent-teal);
+		color: #0f1219;
+		font-weight: 700;
+		font-size: 1rem;
+		padding: 6px 14px;
+		border: 2.5px solid #0f1219;
+		box-shadow: 4px 4px 0 #0f1219;
+		margin-bottom: 2em;
+		letter-spacing: 0.01em;
+	}
+
+	.post-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+		gap: 1.25em;
+		margin-bottom: 2em;
+	}
+
+	.post-card {
+		display: flex;
+		flex-direction: column;
+		background: var(--surface);
+		border: 2px solid var(--card-accent);
+		box-shadow: 4px 4px 0 var(--card-accent);
+		padding: 1.4em;
+		text-decoration: none;
+		color: var(--text);
+		transition: transform 0.12s, box-shadow 0.12s;
+	}
+
+	.post-card:hover {
+		transform: translate(-2px, -2px);
+		box-shadow: 6px 6px 0 var(--card-accent);
+		color: var(--text);
+	}
+
+	.post-date {
+		font-size: 0.75rem;
+		color: var(--text-muted);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin-bottom: 0.5em;
+	}
+
+	.post-title {
+		font-size: 1.05rem;
+		font-weight: 700;
+		line-height: 1.3;
+		margin: 0 0 0.6em;
+		color: var(--text);
+	}
+
+	.post-excerpt {
+		font-size: 0.875rem;
+		color: var(--text-muted);
+		line-height: 1.6;
+		margin: 0 0 1em;
+		flex: 1;
+	}
+
+	.read-more {
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: var(--card-accent);
+		letter-spacing: 0.03em;
+	}
+
+	.all-posts-link {
+		display: inline-block;
+		color: var(--text-muted);
+		text-decoration: none;
+		font-size: 0.9rem;
+		font-weight: 600;
+		letter-spacing: 0.02em;
+		border-bottom: 1px solid var(--border);
+		padding-bottom: 2px;
+		transition: color 0.15s, border-color 0.15s;
+	}
+
+	.all-posts-link:hover {
+		color: var(--text);
+		border-color: var(--text);
+	}
+
+	@media (max-width: 600px) {
+		.post-grid {
+			grid-template-columns: 1fr;
+		}
+		.headline {
+			font-size: 2.4rem;
+		}
+	}
+</style>
