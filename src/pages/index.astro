@@ -68,7 +68,9 @@ const cardAccents = ['--accent-blue', '--accent-gold', '--accent-teal'];
 <style>
 	main {
 		max-width: 860px;
+		width: 100%;
 		padding: 4em 1.5em 5em;
+		box-sizing: border-box;
 	}
 
 	/* Hero */
@@ -92,11 +94,12 @@ const cardAccents = ['--accent-blue', '--accent-gold', '--accent-teal'];
 	}
 
 	.headline {
-		font-size: clamp(2.8rem, 6vw, 4.5rem);
+		font-size: clamp(2rem, 8vw, 4.5rem);
 		font-weight: 800;
-		line-height: 1.1;
+		line-height: 1.15;
 		color: var(--text);
 		margin-bottom: 1.5em;
+		word-break: break-word;
 	}
 
 	.highlight {
@@ -213,11 +216,25 @@ const cardAccents = ['--accent-blue', '--accent-gold', '--accent-teal'];
 	}
 
 	@media (max-width: 600px) {
-		.post-grid {
-			grid-template-columns: 1fr;
+		main {
+			padding: 2.5em 1.25em 4em;
+		}
+		.hero {
+			margin-bottom: 3em;
 		}
 		.headline {
-			font-size: 2.4rem;
+			font-size: clamp(1.75rem, 9vw, 2.4rem);
+		}
+		.highlight {
+			display: inline;
+			box-shadow: none;
+			padding: 2px 6px;
+		}
+		.bio p {
+			font-size: 1rem;
+		}
+		.post-grid {
+			grid-template-columns: 1fr;
 		}
 	}
 </style>

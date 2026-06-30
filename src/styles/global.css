@@ -28,10 +28,11 @@ body {
 }
 
 main {
-	width: 760px;
-	max-width: calc(100% - 2em);
+	width: 100%;
+	max-width: 760px;
 	margin: auto;
 	padding: 3em 1em;
+	box-sizing: border-box;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -98,8 +99,11 @@ hr {
 }
 
 @media (max-width: 720px) {
-	body { font-size: 18px; }
-	main { padding: 1em; }
+	body {
+		font-size: 18px;
+		overflow-x: hidden;
+	}
+	main { padding: 1.25em; }
 }
 
 .sr-only {
