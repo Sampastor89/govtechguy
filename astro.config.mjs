@@ -2,10 +2,13 @@
 
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel';
 import { defineConfig, fontProviders } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
+	output: 'static',
+	adapter: vercel({ edgeMiddleware: true }),
 	site: 'https://govtechguy.com',
 	integrations: [mdx(), sitemap()],
 	fonts: [
