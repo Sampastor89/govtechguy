@@ -7,7 +7,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-	output: 'static',
+	output: process.env.NODE_ENV === 'development' ? 'server' : 'static',
 	adapter: vercel(),
 	site: 'https://govtechguy.com',
 	integrations: [mdx(), sitemap()],
