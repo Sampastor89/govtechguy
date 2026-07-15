@@ -7,7 +7,7 @@ heroImage: '../../assets/sfpd-drone-leak-invisible-surveillance.png'
 
 San Francisco's Skydio drones were livestreaming to the open internet for six months. Nobody caught it until two security researchers, Sam Curry and Maik Robert, stumbled on a misconfigured sharing link with no authentication and just... watched. Color feed, thermal feed, dock feed. Officer names and emails. 48 hours of real operations archived before anyone at SFPD knew. WIRED broke it this week.<sup><a href="#ref-1">[1]</a></sup>
 
-I wrote about this Skidoo a couple weeks ago — ["When Seconds Count, a Drone Gets There First."](/blog/drones-as-first-responders) The technology is genuinely exciting: drones beating patrol cars to 911 calls, drones locating people in burning buildings, drones using thermal cameras to find lost hunters. At the end, I said the guardrails need to move as fast as the drones. I did not expect the guardrails to fail this fast.
+I wrote about this Skydio program a couple weeks ago — ["When Seconds Count, a Drone Gets There First."](/blog/drones-as-first-responders) The technology is genuinely exciting: drones beating patrol cars to 911 calls, drones locating people in burning buildings, drones using thermal cameras to find lost hunters. At the end, I said the guardrails need to move as fast as the drones. I did not expect the guardrails to fail this fast.
 
 ---
 
