@@ -1,6 +1,6 @@
 import { defineMiddleware } from 'astro:middleware';
 
-export const onRequest = defineMiddleware((context, next) => {
+export const onRequest = import.meta.env.DEV ? defineMiddleware((context, next) => {
   const authHeader = context.request.headers.get('Authorization');
 
   if (!authHeader?.startsWith('Basic ')) {
@@ -16,6 +16,8 @@ export const onRequest = defineMiddleware((context, next) => {
     return unauthorized();
   }
 
+  return next();
+}) : defineMiddleware((context, next) => {
   return next();
 });
 
