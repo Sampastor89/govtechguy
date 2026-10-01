@@ -1,0 +1,40 @@
+---
+title: 'Nobody Has Built Harvey for Government Yet'
+description: 'Harvey proved law firms will pay for a model that never leaves their infrastructure. Decagon proved the same for customer support. Local government has the same stakes and nobody has made the same move.'
+pubDate: 'Oct 01 2026'
+heroImage: '../../assets/harvey-for-government.png'
+---
+
+Harvey just raised $550M at a $15.5B valuation — up from $11B seven months earlier. Decagon tripled its valuation to $4.5B in the same stretch. Both companies made the identical bet: pick one domain where the stakes are too high for a wrapper around GPT-4, build a company around owning the model instead of renting one, and let the compliance story become the moat. Nobody has made that bet on local government yet. That's the gap.
+
+## What Harvey and Decagon actually built
+
+The easy version of this story is "they fine-tuned a model on legal documents." The real story is narrower and more interesting. Harvey's September raise funded [Tenet](https://www.harvey.ai/blog/harvey-raises-dollar550m-at-a-dollar155b-valuation-to-help-legal-teams-own-their-intelligence), its first proprietary model — built specifically so a law firm's privileged documents never touch a third-party model server. That's not a performance pitch. It's an attorney-client-privilege pitch. Decagon's moat is similar in spirit but different in mechanism: it's not the base model, it's the layer that encodes a company's exact support playbook — "here's precisely what we do when a customer says X" — into something an agent can execute without hallucinating a new policy.
+
+Both companies are answering the same underlying question: in a domain where being wrong (or being leaky) is catastrophic, what do you have to own yourself, and what can you safely rent? Harvey decided the model had to be owned. Decagon decided the workflow had to be owned. Local government has versions of both problems, worse.
+
+## Who's actually selling AI to local government right now
+
+The honest answer is: almost nobody is making Harvey's move. The field splits into three tiers, and none of them look like a vertical-model company.
+
+**Small chatbot and CRM startups** — [Polimorphic](https://www.semafor.com/article/07/08/2025/ai-startup-polimorphic-raises-186-million-for-local-government-chatbots) raised an $18.6M Series A in mid-2025 and serves 200+ city and county departments with chatbots and permitting workflows. [Citibot](https://www.crunchbase.com/organization/citibot) has raised under $1M total. [Zencity](https://www.calcalistech.com/ctechnews/article/hy1bnw18a) raised $40M for community-input analysis. All three are, as far as public information shows, prompting general-purpose foundation models. None claims proprietary training.
+
+**Compliance-first platforms** — [Ask Sage](https://pulse2.com/ask-sage-17-million-series-a-raised-to-build-genai-platforms-for-government-and-commercial-sectors/) is the most serious government-native AI company that exists today: DoD IL5 and FedRAMP High authorized, 30,000+ DoD users, a $49M five-year Army contract. BigBear.ai just acquired it for $250M. But Ask Sage is explicitly model-agnostic — the product is the authorization and the integration layer, not a model it owns. That's a real business. It's not Harvey's business.
+
+**Hyperscalers wrapping general models in a compliance tenant** — Anthropic's [Claude Gov](https://www.nextgov.com/acquisition/2025/06/anthropic-introduces-new-claude-gov-models-national-security-focus/405836/) models, OpenAI's now-ended [$1-per-agency-per-year](https://www.govexec.com/technology/2025/08/openai-give-federal-agencies-chatgpt-access-1-year/407292/) federal deal, Microsoft's [$3.1B OneGov discount](https://www.gsa.gov/about-gsa/newsroom/news-releases/multibillion-dollar-gsa-onegov-agreement-with-microsoft-brings-steep-discounts-09022025), Google's Gemini on America.gov. These are frontier models with a FedRAMP wrapper, sold at a loss-leader price to win the logo. None of them is trained on municipal permitting data, state court filings, or ERP ledgers. They're the same model your city's IT department could already call through an API.
+
+Then there's Tyler Technologies — $2.3B in 2025 revenue, 45,000+ installs, the actual incumbent ERP layer underneath most of local government. Its AI Assistant is live in six states and genuinely useful, but it's a feature bolted onto a 50-year-old suite, not a model built to reason about government workflows from the ground up. [Tyler's Q2 2026 filing](https://www.sec.gov/Archives/edgar/data/0000860731/000086073126000048/a991earningsrelease-6302026.htm) reads like a company adding AI, not a company that is AI.
+
+## Why courts specifically can't just use ChatGPT
+
+This is where the case for a genuinely purpose-built model gets concrete instead of theoretical. As of April 2026, researchers have documented [1,313 court proceedings](https://www.lawnext.com/2025/09/a-new-wrinkle-in-ai-hallucination-cases-lawyers-dinged-for-failing-to-detect-opponents-fake-citations.html) with fabricated AI-generated citations, 496 of them involving licensed attorneys who should have known better. Sanctions have escalated eleven-fold in eighteen months — from $5,000 average in 2023 to $55,597 in 2025 — and in May 2026 an Oregon case produced $110,000 in combined sanctions for 23 fabricated citations, the largest penalty in US legal history for this specific failure mode.
+
+That's not a UX problem solvable with a better prompt. It's a model-confidence problem in a setting where confidently wrong output gets someone sanctioned, or worse, gets a defendant sentenced on a citation that doesn't exist. Government has already lived through what happens when an opaque model gets near sentencing decisions — [COMPAS](https://en.wikipedia.org/wiki/COMPAS_(software)), the recidivism-risk tool ProPublica investigated in 2016, flagged Black defendants as high-risk at nearly twice the false-positive rate of white defendants, and later research found it performed no better than chance. Courts are exactly the domain where "we trained this ourselves and can show our work" stops being a sales pitch and starts being a legal requirement.
+
+## The market is there; the company isn't
+
+[Agentic AI in government](https://www.researchandmarkets.com/reports/6226159/agentic-ai-government-report) is forecast to grow from $3.37B in 2026 to $14.41B by 2030 — a 44% CAGR, the fastest-growing slice of a broader [AI-in-government market](https://www.openpr.com/news/4539351/ai-in-government-and-public-services-market-to-reach-usd-160-0) already at $31B and heading toward $160B by 2036. Compare the funding flowing into that opportunity to what's actually been raised: Polimorphic's $18.6M, Zencity's $40M, Ask Sage's $17M-then-acquired-for-$250M. Harvey raised more in one round this year than the entire local-government AI funding category has raised, period. That gap — between market size and capital deployed — is either a sign nobody's cracked the model yet, or a sign everyone correctly assumes they can't own the whole stack the way Harvey did.
+
+## The skeptical read, and why government might be the exception to it
+
+The standard critique of vertical AI is that the model barely matters — GPT-4, Claude, and Gemini are close enough to interchangeable that the real moat is workflow encoding and enterprise trust, and "we trained our own model" is often theater on top of a fine-tune. That critique is probably right for most verticals. It's a weaker critique for courts and public records specifically, because the privilege-and-privacy argument Harvey just made with Tenet — your sensitive documents never leave our infrastructure — maps almost exactly onto CJIS data, sealed court records, and state public-records law. Government isn't just a domain with specialized vocabulary. It's a domain with statutory restrictions on where data is allowed to live. That's a harder moat to fake than better prompting, and right now, nobody local-government-specific is building toward it.
